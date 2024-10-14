@@ -22,13 +22,13 @@ def clear_session():
 
 @app.route('/articles/<int:id>')
 def show_article(id):
-    # Retrieve the article
+    
     article = Article.query.get(id)
     
     if not article:
-        return jsonify({"error": "Article not found"}), 404  # Return 404 if article not found
+        return jsonify({"error": "Article not found"}), 404  
     
-    # Initialize session['page_views'] with a ternary operator
+   
     session['page_views'] = session.get('page_views', 0) + 1
     
     # Check if the user has viewed more than 3 articles
@@ -37,7 +37,7 @@ def show_article(id):
     
     # Return the article data if the user has viewed 3 or fewer articles
     return jsonify(article.to_dict()), 200
-
+    pass
 if __name__ == '__main__':
     app.run(port=5555)
 
